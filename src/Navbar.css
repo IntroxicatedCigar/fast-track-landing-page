@@ -1,0 +1,142 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  padding: 20px 0;
+}
+
+/* When scrolled down, add background and shadow */
+.navbar.scrolled {
+  background-color: white;
+  padding: 15px 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.navbar.scrolled .navbar-logo {
+  color: var(--primary-blue);
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.3s ease;
+}
+
+.navbar.scrolled .nav-link {
+  color: var(--text-dark);
+}
+
+.nav-link:hover {
+  color: var(--cta-orange);
+}
+
+.nav-cta {
+  background-color: var(--cta-orange);
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-cta:hover {
+  background-color: var(--cta-hover);
+  transform: translateY(-2px);
+}
+
+/* Hamburger Icon (Hidden on Desktop) */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hamburger .bar {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled .hamburger .bar {
+  background-color: var(--primary-blue);
+}
+
+/* Responsive Mobile Menu */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .navbar-links {
+    position: absolute;
+    top: 100%;
+    left: -100%;
+    width: 100%;
+    background-color: white;
+    flex-direction: column;
+    padding: 30px 0;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease;
+    gap: 25px;
+  }
+
+  .navbar-links.active {
+    left: 0;
+  }
+
+  .nav-link {
+    color: var(--text-dark);
+    font-size: 1.2rem;
+  }
+
+  /* Hamburger animation into 'X' */
+  .hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}

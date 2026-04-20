@@ -1,0 +1,903 @@
+/* Import Fonts */
+html {
+  scroll-behavior: smooth;
+}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap");
+
+:root {
+  --primary-blue: #0a2472; /* Deep Royal Blue */
+  --accent-blue: #1e3a8a; /* Lighter Royal Blue */
+  --cta-orange: #ff6b00; /* Vibrant Orange */
+  --cta-hover: #e65c00;
+  --bg-light: #f8f9fa;
+  --text-dark: #1f2937;
+  --text-light: #4b5563;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  color: var(--text-dark);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Poppins", sans-serif;
+  margin: 0 0 1rem 0;
+}
+
+/* Hero Section */
+/* Hero Section */
+.hero-section {
+  /* 1. Stack a semi-transparent blue overlay on top of an Unsplash placeholder image */
+  background: linear-gradient(
+      135deg,
+      rgba(10, 36, 114, 0.85) 0%,
+      rgba(30, 58, 138, 0.85) 100%
+    ),
+    url("https://images.unsplash.com/photo-1580674285054-bed31e145f59?q=80&w=2070&auto=format&fit=crop");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* 2. Force the section to take up 90% of the screen height */
+  min-height: 80vh;
+
+  /* 3. Use Flexbox to perfectly center the content inside the massive container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  line-height: 1.2;
+}
+
+.hero-content p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+/* Buttons */
+.cta-button {
+  background-color: var(--cta-orange);
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 15px 35px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cta-button:hover {
+  background-color: var(--cta-hover);
+  transform: translateY(-2px);
+}
+
+/* Tracking Bar within Hero */
+.tracking-container {
+  margin-top: 3rem;
+  background: white;
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+  gap: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tracking-input {
+  flex: 1;
+  border: 1px solid transparent;
+  background-color: var(--bg-light);
+  border-radius: 6px;
+  padding: 15px 15px;
+  font-size: 1rem;
+  color: var(--text-dark);
+  transition: border-color 0.3s ease;
+}
+
+.tracking-input:focus {
+  background-color: white;
+  border-color: var(--accent-blue);
+  outline: none;
+  box-shadow: none; /* overrides previous input focus */
+}
+
+.tracking-btn {
+  margin: 0;
+  white-space: nowrap; /* Prevents button text from breaking onto two lines */
+  padding: 15px 25px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  /* 1. Hero Section Padding & Text Scaling */
+  .hero-section {
+    padding: 100px 20px 60px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.2rem; /* Scales down the massive headline */
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem; /* Makes the paragraph text smaller and cleaner */
+    margin-bottom: 2rem;
+    padding: 0 10px; /* Keeps text from touching the very edges of the screen */
+  }
+
+  /* 2. Tracking Box Layout */
+  .tracking-container {
+    flex-direction: column;
+    background: #f3f4f6; /* Grayish background */
+    padding: 12px; /* Reduced from 15px to scale it down */
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    gap: 10px; /* Tighter spacing between input and button */
+    width: 95%;
+    margin: 20px auto; /* Keeps it perfectly centered */
+  }
+
+  .tracking-input {
+    width: 100%;
+    border: 1px solid #d1d5db;
+    background: white; /* Pure white so it pops against the gray card */
+    padding: 12px 15px; /* Slightly slimmer input box */
+    font-size: 0.95rem; /* Slightly smaller text */
+  }
+
+  .tracking-btn {
+    width: 100%;
+    padding: 12px 15px; /* Slightly slimmer button */
+    font-size: 1rem;
+  }
+}
+
+/* How It Works Section */
+.process-section {
+  padding: 80px 20px;
+  background-color: var(
+    --bg-light
+  ); /* Keeps it distinct from the white services section */
+  text-align: center;
+}
+
+.process-steps {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 60px auto 0;
+  position: relative;
+}
+
+/* Connecting line behind the icons */
+.process-steps::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: 15%;
+  right: 15%;
+  height: 2px;
+  background-color: #d1d5db;
+  z-index: 0;
+}
+
+.step {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.step-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  background-color: white;
+  border: 3px solid var(--accent-blue);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step:hover .step-icon {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(30, 58, 138, 0.15);
+  border-color: var(--cta-orange);
+}
+
+.step h3 {
+  color: var(--primary-blue);
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.step p {
+  color: var(--text-light);
+  line-height: 1.5;
+  padding: 0 10px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .process-steps {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  /* Hide the connecting line on mobile since they are stacked vertically */
+  .process-steps::before {
+    display: none;
+  }
+}
+
+/* Services Section */
+.services-section {
+  padding: 80px 20px;
+  background-color: white;
+  text-align: center;
+}
+
+.services-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1100px;
+  margin: 40px auto 0;
+  flex-wrap: wrap;
+}
+
+.service-card {
+  background: var(--bg-light);
+  padding: 40px 30px;
+  border-radius: 12px;
+  flex: 1;
+  min-width: 250px;
+  border-top: 4px solid var(--accent-blue);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.service-card p {
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+/* Pricing & Coverage Section */
+.pricing-section {
+  padding: 80px 20px;
+  background-color: white;
+}
+
+.pricing-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 50px;
+}
+
+.pricing-header p {
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+.pricing-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.price-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 40px 30px;
+  flex: 1;
+  min-width: 300px;
+  text-align: left;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.price-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Highlighted Middle Card */
+.price-card.popular {
+  border: 2px solid var(--accent-blue);
+  box-shadow: 0 10px 25px rgba(30, 58, 138, 0.1);
+  transform: scale(1.05); /* Makes it slightly larger on desktop */
+}
+
+.price-card.popular:hover {
+  transform: scale(1.05) translateY(-5px);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--accent-blue);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.zone-badge {
+  display: inline-block;
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.price-card h3 {
+  color: var(--text-dark);
+  font-size: 1.4rem;
+}
+
+.price {
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin: 15px 0 5px;
+}
+
+.price span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-light);
+  display: block;
+}
+
+.delivery-time {
+  font-size: 0.95rem;
+  color: var(--cta-orange);
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.coverage-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px 0;
+}
+
+.coverage-list li {
+  padding: 8px 0;
+  color: var(--text-light);
+  font-size: 0.95rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.coverage-list li:last-child {
+  border-bottom: none;
+}
+
+.outline-btn {
+  background-color: transparent;
+  color: var(--primary-blue);
+  border: 2px solid var(--primary-blue);
+  width: 100%;
+}
+
+.outline-btn:hover {
+  background-color: var(--bg-light);
+  color: var(--primary-blue);
+}
+
+.price-card.popular .cta-button {
+  width: 100%; /* Makes the solid blue button fill the width */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+  .pricing-grid {
+    flex-direction: column;
+  }
+
+  .price-card.popular {
+    transform: scale(
+      1
+    ); /* Removes the size bump on mobile so they stack evenly */
+  }
+
+  .price-card.popular:hover {
+    transform: translateY(-5px);
+  }
+}
+
+/* FAQ Section */
+.faq-section {
+  padding: 80px 20px;
+  background-color: var(
+    --bg-light
+  ); /* Off-white to separate it from the white pricing cards */
+}
+
+.faq-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.faq-header p {
+  color: var(--text-light);
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  overflow: hidden; /* Keeps the borders neat */
+}
+
+.faq-item {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 25px 30px;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.faq-question:hover {
+  background-color: #f9fafb;
+}
+
+.faq-icon {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--primary-blue);
+  transition: transform 0.3s ease;
+}
+
+/* Smooth Accordion Animation using CSS Grid */
+.faq-answer-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease-in-out;
+}
+
+.faq-item.active .faq-answer-wrapper {
+  grid-template-rows: 1fr;
+}
+
+.faq-answer {
+  overflow: hidden;
+  padding: 0 30px;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+/* This adds padding only when open, avoiding weird layout jumps */
+.faq-item.active .faq-answer {
+  padding-bottom: 25px;
+}
+
+/* Testimonials Section (Carousel) */
+.testimonials-section {
+  padding: 80px 20px;
+  background-color: var(--bg-light);
+  text-align: center;
+}
+
+.carousel-container {
+  max-width: 700px;
+  margin: 30px auto 0;
+  overflow: hidden; /* Essential: Hides the off-screen cards */
+  position: relative;
+  padding-bottom: 20px; /* Space for dots */
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out; /* Smooth sliding animation */
+}
+
+.testimonial-card {
+  min-width: 100%; /* Ensures only one card shows at a time */
+  box-sizing: border-box;
+  background: white;
+  padding: 50px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stars {
+  color: #fbbf24;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.review-text {
+  font-size: 1.2rem;
+  font-style: italic;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+}
+
+.client-info strong {
+  display: block;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
+}
+
+.client-info span {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+/* Carousel Navigation Dots */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: #d1d5db;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active {
+  background-color: var(--cta-orange);
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 80px 20px;
+  background-color: white;
+  text-align: center;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 40px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  display: flex;
+  gap: 20px;
+}
+
+.input-group input {
+  flex: 1;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+}
+
+.submit-btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .input-group {
+    flex-direction: column;
+  }
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+}
+/* Footer Section */
+.footer-section {
+  background-color: var(--primary-blue);
+  color: white;
+  padding: 80px 20px 20px;
+}
+
+.footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 50px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 50px;
+}
+
+.footer-col h3 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.footer-col h4 {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+/* Little accent line under column headers */
+.footer-col h4::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 3px;
+  background-color: var(--cta-orange);
+  border-radius: 2px;
+}
+
+.brand-col p {
+  color: #d1d5db;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  max-width: 350px;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon:hover {
+  background-color: var(--cta-orange);
+  transform: translateY(-3px);
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 15px;
+  color: #d1d5db;
+}
+
+.links-col ul li a {
+  color: #d1d5db;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.links-col ul li a:hover {
+  color: var(--cta-orange);
+}
+
+.contact-col ul li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 25px;
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .brand-col p {
+    max-width: 100%;
+  }
+}
+/* --- Booking Modal Styles --- */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(10, 36, 114, 0.6); /* Dark semi-transparent blue */
+  backdrop-filter: blur(4px); /* Blurs the background slightly */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000; /* Ensures it sits on top of everything, including the navbar */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.modal-content {
+  background-color: white;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  padding: 40px;
+  position: relative;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  animation: modalFadeIn 0.3s ease-out forwards;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.close-modal {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+  color: var(--cta-orange);
+}
+
+.modal-content h2 {
+  color: var(--primary-blue);
+  margin-bottom: 5px;
+}
+
+.modal-subtitle {
+  color: var(--text-light);
+  margin-bottom: 25px;
+  font-size: 0.95rem;
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+  padding: 12px 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: "Inter", sans-serif;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+}
+
+.full-width {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  .modal-content {
+    padding: 30px 20px;
+  }
+}
