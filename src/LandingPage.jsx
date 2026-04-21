@@ -106,7 +106,7 @@ const LandingPage = () => {
       {/* Hero Section */}
       <header id="home" className="hero-section">
         <div className="hero-content">
-          <h1>Fast Track Deliveries</h1>
+          <h1>Speedman Deliveries</h1>
           <p>
             Your parcels, delivered with speed and precision. We handle the
             logistics so you can focus on growing your business.
