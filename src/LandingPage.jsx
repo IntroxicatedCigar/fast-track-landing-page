@@ -26,6 +26,15 @@ const testimonials = [
     rating: "★★★★☆",
     text: "Great communication, solid pricing, and packages always arrive in perfect condition. Highly recommended.",
   },
+
+  {
+    id: 3,
+    name: "Mark Rodriguez",
+    title: "Director",
+    company: "Wears Inc.",
+    rating: "★★★★☆",
+    text: "Solid pricing.Highly recommended.",
+  },
 ];
 
 const faqs = [
@@ -90,7 +99,7 @@ const LandingPage = () => {
     const message = `Hello, I'd like an update on my package. Tracking Number: ${trackingInput}`;
 
     // IMPORTANT: Replace this with the actual client number (e.g., "254712345678")
-    const clientWhatsAppNumber = "254102665670";
+    const clientWhatsAppNumber = "254723765948";
 
     const encodedMessage = encodeURIComponent(message);
     window.open(
@@ -466,7 +475,7 @@ const LandingPage = () => {
       <footer className="footer-section">
         <div className="footer-container">
           <div className="footer-col brand-col">
-            <h3>Fast Track</h3>
+            <h3>Speedman Deliveries</h3>
             <p>
               Your trusted logistics partner in Nairobi. We ensure your parcels
               are delivered with speed, safety, and precision.
@@ -500,15 +509,15 @@ const LandingPage = () => {
             <h4>Contact Info</h4>
             <ul>
               <li>📍 Moi Avenue, Nairobi CBD</li>
-              <li>📞 +254 700 000 000</li>
+              <li>📞 +254 723 765948</li>
               <li>✉️ dispatch@fasttrack.co.ke</li>
-              <li>🕒 Mon - Sat: 7:00 AM - 6:00 PM</li>
+              <li>🕒 Mon - Sun: 7:00 AM - 6:00 PM</li>
             </ul>
           </div>
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; 2026 Fast Track Deliveries. All rights reserved.</p>
+          <p>&copy; 2026 Speedman Deliveries. All rights reserved.</p>
         </div>
       </footer>
 
@@ -565,7 +574,7 @@ const LandingPage = () => {
 
                 const message = `*New Delivery Booking* 📦\n\n${zoneText}*Pickup Location:* ${pickup}\n*Specific Drop-off:* ${dropoff}\n*Package Size:* ${size}\n*Client Contact:* ${phone}\n\nHi Speedman Deliveries team, please confirm availability for this route.`;
 
-                const clientWhatsAppNumber = "254102665670";
+                const clientWhatsAppNumber = "254723765948";
                 const encodedMessage = encodeURIComponent(message);
                 window.open(
                   `https://wa.me/${clientWhatsAppNumber}?text=${encodedMessage}`,

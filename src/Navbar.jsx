@@ -35,7 +35,7 @@ const Navbar = () => {
       <div className="navbar-container">
         {/* Logo */}
         <div className="navbar-logo" onClick={() => scrollToSection("home")}>
-          Fast Track
+          🏍Speedman
         </div>
 
         {/* Desktop & Mobile Links */}
