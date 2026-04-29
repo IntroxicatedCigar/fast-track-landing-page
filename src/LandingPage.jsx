@@ -28,7 +28,7 @@ const testimonials = [
   },
 
   {
-    id: 3,
+    id: 4,
     name: "Mark Rodriguez",
     title: "Director",
     company: "Wears Inc.",
@@ -99,7 +99,7 @@ const LandingPage = () => {
     const message = `Hello, I'd like an update on my package. Tracking Number: ${trackingInput}`;
 
     // IMPORTANT: Replace this with the actual client number (e.g., "254712345678")
-    const clientWhatsAppNumber = "254723765948";
+    const clientWhatsAppNumber = "254706053163";
 
     const encodedMessage = encodeURIComponent(message);
     window.open(
@@ -574,7 +574,7 @@ const LandingPage = () => {
 
                 const message = `*New Delivery Booking* 📦\n\n${zoneText}*Pickup Location:* ${pickup}\n*Specific Drop-off:* ${dropoff}\n*Package Size:* ${size}\n*Client Contact:* ${phone}\n\nHi Speedman Deliveries team, please confirm availability for this route.`;
 
-                const clientWhatsAppNumber = "254723765948";
+                const clientWhatsAppNumber = "254706053163";
                 const encodedMessage = encodeURIComponent(message);
                 window.open(
                   `https://wa.me/${clientWhatsAppNumber}?text=${encodedMessage}`,
