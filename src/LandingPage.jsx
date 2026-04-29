@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./LandingPage.css";
+import PricingCalculator from "./components/PricingCalculator";
 
 const testimonials = [
   {
@@ -26,14 +27,13 @@ const testimonials = [
     rating: "★★★★☆",
     text: "Great communication, solid pricing, and packages always arrive in perfect condition. Highly recommended.",
   },
-
   {
     id: 4,
     name: "Mark Rodriguez",
     title: "Director",
     company: "Wears Inc.",
     rating: "★★★★☆",
-    text: "Solid pricing.Highly recommended.",
+    text: "Solid pricing. Highly recommended.",
   },
 ];
 
@@ -63,51 +63,42 @@ const faqs = [
 const LandingPage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  // Add this near your other useState declarations
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedZone, setSelectedZone] = useState("");
   const [trackingInput, setTrackingInput] = useState("");
-  // Quote Form State
   const [isSendingQuote, setIsSendingQuote] = useState(false);
   const [quoteSuccess, setQuoteSuccess] = useState(false);
+  const [openFaqIndex, setOpenFaqIndex] = useState(null);
+
   useEffect(() => {
     if (isPaused) return;
-
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-    }, 4000); // Changes every 4 seconds
-
+    }, 4000);
     return () => clearInterval(interval);
   }, [isPaused]);
 
-  const [openFaqIndex, setOpenFaqIndex] = useState(null);
-
   const toggleFaq = (index) => {
-    // If clicking the already open FAQ, close it. Otherwise, open the new one.
     setOpenFaqIndex(openFaqIndex === index ? null : index);
-  };
-
-  const handleDotClick = (index) => {
-    setCurrentIndex(index);
   };
 
   const handleTrackParcel = (e) => {
     e.preventDefault();
     if (!trackingInput.trim()) return;
-
-    // Send them straight to the dispatcher via WhatsApp
     const message = `Hello, I'd like an update on my package. Tracking Number: ${trackingInput}`;
-
-    // IMPORTANT: Replace this with the actual client number (e.g., "254712345678")
     const clientWhatsAppNumber = "254706053163";
-
     const encodedMessage = encodeURIComponent(message);
     window.open(
       `https://wa.me/${clientWhatsAppNumber}?text=${encodedMessage}`,
       "_blank"
     );
+    setTrackingInput("");
+  };
 
-    setTrackingInput(""); // Clear the input field after sending
+  // This function connects your Pricing component to your Modal
+  const openBookingModal = (zoneInfo) => {
+    setSelectedZone(zoneInfo);
+    setIsModalOpen(true);
   };
 
   return (
@@ -122,10 +113,7 @@ const LandingPage = () => {
           </p>
           <button
             className="cta-button primary"
-            onClick={() => {
-              setSelectedZone(""); // Clears the zone
-              setIsModalOpen(true); // Opens modal
-            }}
+            onClick={() => openBookingModal("")}
           >
             Book a Delivery
           </button>
@@ -157,7 +145,6 @@ const LandingPage = () => {
               platform.
             </p>
           </div>
-
           <div className="step">
             <div className="step-icon">🚚</div>
             <h3>2. Dispatch</h3>
@@ -165,7 +152,6 @@ const LandingPage = () => {
               Our nearest driver is dispatched to collect your package securely.
             </p>
           </div>
-
           <div className="step">
             <div className="step-icon">📍</div>
             <h3>3. Deliver</h3>
@@ -205,94 +191,8 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Coverage & Pricing Section */}
-      <section id="pricing" className="pricing-section">
-        <div className="pricing-header">
-          <h2>Coverage & Pricing</h2>
-          <p>
-            Dispatched from Moi Avenue, Nairobi. Transparent rates with no
-            hidden fees.
-          </p>
-        </div>
-
-        <div className="pricing-grid">
-          {/* Zone 1 Card */}
-          <div className="price-card">
-            <div className="zone-badge">Zone 1</div>
-            <h3>Inner City</h3>
-            <div className="price">
-              <span>Starting at</span> KES 200
-            </div>
-            <p className="delivery-time">Estimated Time: 30 - 45 mins</p>
-            <ul className="coverage-list">
-              <li>✓ Upperhill & Milimani</li>
-              <li>✓ Westlands & Parklands</li>
-              <li>✓ Kilimani & Kileleshwa</li>
-              <li>✓ Ngara & Pangani</li>
-            </ul>
-            <button
-              className="cta-button outline-btn"
-              onClick={() => {
-                setSelectedZone("Zone 1 (Inner City)");
-                setIsModalOpen(true);
-              }}
-            >
-              Book Zone 1
-            </button>
-          </div>
-
-          {/* Zone 2 Card (Highlighted) */}
-          <div className="price-card popular">
-            <div className="popular-badge">Most Popular</div>
-            <div className="zone-badge">Zone 2</div>
-            <h3>Mid-Range Suburbs</h3>
-            <div className="price">
-              <span>Starting at</span> KES 350
-            </div>
-            <p className="delivery-time">Estimated Time: 1 - 2 Hours</p>
-            <ul className="coverage-list">
-              <li>✓ South B & South C</li>
-              <li>✓ Lang'ata & Karen</li>
-              <li>✓ Roysambu & Kasarani</li>
-              <li>✓ Lavington & Hurlingham</li>
-            </ul>
-            <button
-              className="cta-button primary"
-              onClick={() => {
-                setSelectedZone("Zone 2 (Mid-Range Suburbs)");
-                setIsModalOpen(true);
-              }}
-            >
-              Book Zone 2
-            </button>
-          </div>
-
-          {/* Zone 3 Card */}
-          <div className="price-card">
-            <div className="zone-badge">Zone 3</div>
-            <h3>Outer Metropolitan</h3>
-            <div className="price">
-              <span>Starting at</span> KES 600
-            </div>
-            <p className="delivery-time">Estimated Time: Same Day (By 5 PM)</p>
-            <ul className="coverage-list">
-              <li>✓ Ruaka & Kikuyu</li>
-              <li>✓ Ongata Rongai</li>
-              <li>✓ Syokimau & Mlolongo</li>
-              <li>✓ Ruiru & Juja</li>
-            </ul>
-            <button
-              className="cta-button outline-btn"
-              onClick={() => {
-                setSelectedZone("Zone 3 (Outer Metropolitan)");
-                setIsModalOpen(true);
-              }}
-            >
-              Book Zone 3
-            </button>
-          </div>
-        </div>
-      </section>
+      {/* NEW ISOLATED FARE CALCULATOR */}
+      <PricingCalculator onBookRoute={openBookingModal} />
 
       {/* FAQ Section */}
       <section id="faq" className="faq-section">
@@ -300,7 +200,6 @@ const LandingPage = () => {
           <h2>Frequently Asked Questions</h2>
           <p>Everything you need to know about our delivery process.</p>
         </div>
-
         <div className="faq-container">
           {faqs.map((faq, index) => (
             <div
@@ -346,14 +245,12 @@ const LandingPage = () => {
               </div>
             ))}
           </div>
-
-          {/* Navigation Dots */}
           <div className="carousel-dots">
             {testimonials.map((_, index) => (
               <span
                 key={index}
                 className={`dot ${index === currentIndex ? "active" : ""}`}
-                onClick={() => handleDotClick(index)}
+                onClick={() => setCurrentIndex(index)}
               ></span>
             ))}
           </div>
@@ -393,10 +290,9 @@ const LandingPage = () => {
               className="cta-button submit-btn"
               style={{
                 marginTop: "20px",
-                width: "auto" /* Prevents the 100% stretching */,
-                display:
-                  "inline-block" /* Keeps it centered via the parent's text-align */,
-                padding: "12px 40px" /* Gives it nice, balanced proportions */,
+                width: "auto",
+                display: "inline-block",
+                padding: "12px 40px",
               }}
               onClick={() => setQuoteSuccess(false)}
             >
@@ -409,25 +305,19 @@ const LandingPage = () => {
             onSubmit={async (e) => {
               e.preventDefault();
               setIsSendingQuote(true);
-
               const formData = new FormData(e.target);
-
               try {
-                // IMPORTANT: Replace the URL below with your actual Formspree endpoint
                 const response = await fetch(
                   "https://formspree.io/f/mojylynd",
                   {
                     method: "POST",
                     body: formData,
-                    headers: {
-                      Accept: "application/json",
-                    },
+                    headers: { Accept: "application/json" },
                   }
                 );
-
                 if (response.ok) {
                   setQuoteSuccess(true);
-                  e.target.reset(); // Clears the form
+                  e.target.reset();
                 } else {
                   alert(
                     "Oops! There was a problem submitting your form. Please try again."
@@ -443,7 +333,6 @@ const LandingPage = () => {
             }}
           >
             <div className="input-group">
-              {/* Notice the added name="name" and name="email" attributes */}
               <input type="text" name="name" placeholder="Your Name" required />
               <input
                 type="email"
@@ -452,14 +341,12 @@ const LandingPage = () => {
                 required
               />
             </div>
-
             <textarea
               name="message"
               placeholder="Tell us about your delivery needs..."
               rows="5"
               required
             ></textarea>
-
             <button
               type="submit"
               className="cta-button submit-btn"
@@ -480,13 +367,7 @@ const LandingPage = () => {
               Your trusted logistics partner in Nairobi. We ensure your parcels
               are delivered with speed, safety, and precision.
             </p>
-            <div className="social-links">
-              <span className="social-icon">FB</span>
-              <span className="social-icon">IG</span>
-              <span className="social-icon">X</span>
-            </div>
           </div>
-
           <div className="footer-col links-col">
             <h4>Quick Links</h4>
             <ul>
@@ -504,18 +385,16 @@ const LandingPage = () => {
               </li>
             </ul>
           </div>
-
           <div className="footer-col contact-col">
             <h4>Contact Info</h4>
             <ul>
               <li>📍 Moi Avenue, Nairobi CBD</li>
               <li>📞 +254 723 765948</li>
-              <li>✉️ dispatch@fasttrack.co.ke</li>
+              <li>✉️speedmandeliveryservices@gmail.com</li>
               <li>🕒 Mon - Sun: 7:00 AM - 6:00 PM</li>
             </ul>
           </div>
         </div>
-
         <div className="footer-bottom">
           <p>&copy; 2026 Speedman Deliveries. All rights reserved.</p>
         </div>
@@ -524,7 +403,6 @@ const LandingPage = () => {
       {/* Booking Modal Overlay */}
       {isModalOpen && (
         <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
-          {/* Prevent clicks inside the modal from closing it */}
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <button
               className="close-modal"
@@ -532,13 +410,11 @@ const LandingPage = () => {
             >
               &times;
             </button>
-
             <h2>Book a Delivery</h2>
             <p className="modal-subtitle">
               Fill out the details below to schedule your pickup.
             </p>
 
-            {/* NEW: Visual feedback showing the user their selected zone */}
             {selectedZone && (
               <div
                 className="selected-zone-display"
@@ -560,18 +436,15 @@ const LandingPage = () => {
               className="booking-form"
               onSubmit={(e) => {
                 e.preventDefault();
-
                 const formData = new FormData(e.target);
                 const pickup = formData.get("pickup");
                 const dropoff = formData.get("dropoff");
                 const size = formData.get("size");
                 const phone = formData.get("phone");
 
-                // NEW: Add the selected zone to the WhatsApp message if it exists
                 const zoneText = selectedZone
                   ? `*Delivery Route:* ${selectedZone}\n`
                   : "";
-
                 const message = `*New Delivery Booking* 📦\n\n${zoneText}*Pickup Location:* ${pickup}\n*Specific Drop-off:* ${dropoff}\n*Package Size:* ${size}\n*Client Contact:* ${phone}\n\nHi Speedman Deliveries team, please confirm availability for this route.`;
 
                 const clientWhatsAppNumber = "254706053163";
@@ -580,13 +453,11 @@ const LandingPage = () => {
                   `https://wa.me/${clientWhatsAppNumber}?text=${encodedMessage}`,
                   "_blank"
                 );
-
                 setIsModalOpen(false);
               }}
             >
               <div className="form-group">
                 <label>Pickup Location</label>
-                {/* Note the added name="pickup" attribute */}
                 <input
                   type="text"
                   name="pickup"
@@ -594,21 +465,19 @@ const LandingPage = () => {
                   required
                 />
               </div>
-
               <div className="form-group">
                 <label>Drop-off Location</label>
-                {/* Note the added name="dropoff" attribute */}
+                {/* Auto-fill the dropoff if they selected a zone! */}
                 <input
                   type="text"
                   name="dropoff"
+                  defaultValue={selectedZone ? selectedZone.split(" (")[0] : ""}
                   placeholder="e.g., Kilimani"
                   required
                 />
               </div>
-
               <div className="form-group">
                 <label>Package Size</label>
-                {/* Note the added name="size" attribute */}
                 <select name="size" required defaultValue="">
                   <option value="" disabled>
                     Select package size...
@@ -621,10 +490,8 @@ const LandingPage = () => {
                   </option>
                 </select>
               </div>
-
               <div className="form-group">
                 <label>Contact Number</label>
-                {/* Note the added name="phone" attribute */}
                 <input
                   type="tel"
                   name="phone"
@@ -632,7 +499,6 @@ const LandingPage = () => {
                   required
                 />
               </div>
-
               <button type="submit" className="cta-button primary full-width">
                 Confirm Booking on WhatsApp
               </button>
